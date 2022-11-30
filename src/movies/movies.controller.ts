@@ -18,21 +18,18 @@ export class MoviesController {
   getAll(): Movie[] {
     return this.movisesService.getAll();
   }
-  @Get('/search')
-  search(@Query('year') seachingYear: string) {
-    return `we are searching for a movie made after:${seachingYear}`;
-  }
+
   @Get('/:id')
   getOne(@Param('id') movieId: string): Movie {
     return this.movisesService.getOne(movieId);
   }
   @Post()
   create(@Body() movieData) {
-    return movieData;
+    return this.movisesService.create(movieData);
   }
   @Delete('/:id')
   remove(@Param('id') movieId: string) {
-    return `This will Delete a movie ${movieId}`;
+    return this.movisesService.deleteOne(movieId);
   }
   @Patch('/:id')
   path(@Param('id') movieId: string, @Body() updateData) {
